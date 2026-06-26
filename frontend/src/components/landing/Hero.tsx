@@ -3,7 +3,6 @@ import Link from "next/link";
 export function Hero() {
   return (
     <section className="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
-      {/* Ambient glow orbs */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute top-1/4 left-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/15 blur-[150px] animate-glow-pulse" />
         <div className="absolute bottom-0 right-1/4 h-[400px] w-[400px] rounded-full bg-purple-500/10 blur-[120px] animate-glow-pulse" style={{ animationDelay: "2s" }} />
@@ -12,24 +11,20 @@ export function Hero() {
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          {/* Badge */}
           <div className="animate-fade-up mb-8 inline-flex items-center gap-2 rounded-full border border-border bg-surface-light/50 px-4 py-1.5 text-sm text-text-secondary backdrop-blur-sm">
             <span className="inline-block h-2 w-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.5)]" />
             v0.1.0 — Foundation Release
           </div>
 
-          {/* Heading */}
           <h1 className="animate-fade-up-d1 text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl leading-[1.1]">
             Plan smarter.{" "}
             <span className="gradient-text">Execute better.</span>
           </h1>
 
-          {/* Subtext */}
           <p className="animate-fade-up-d2 mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-text-secondary sm:text-xl">
             Aether is a smart daily planning and execution platform built for students, developers, and project workers who want to achieve more with less friction.
           </p>
 
-          {/* CTA Buttons */}
           <div className="animate-fade-up-d3 mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link href="/dashboard" className="btn-primary group inline-flex items-center gap-2 rounded-xl px-7 py-3.5 text-sm font-semibold text-white">
               Open Dashboard
@@ -46,7 +41,6 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Wireframe Preview */}
         <div className="animate-fade-up-d4 mx-auto mt-20 max-w-4xl">
           <div className="card-elevated p-1">
             <div className="rounded-xl bg-surface p-6 sm:p-8">

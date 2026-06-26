@@ -41,8 +41,6 @@ body {
   color: white;
 }
 
-/* ====== Animations ====== */
-
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
@@ -59,8 +57,6 @@ body {
 .animate-fade-up-d3 { animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards; opacity: 0; }
 .animate-fade-up-d4 { animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards; opacity: 0; }
 .animate-glow-pulse { animation: glow-pulse 4s ease-in-out infinite; }
-
-/* ====== Design Utilities ====== */
 
 .gradient-text {
   background: linear-gradient(135deg, #818cf8 0%, #a78bfa 40%, #c084fc 70%, #e879f9 100%);

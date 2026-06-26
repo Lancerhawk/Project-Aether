@@ -17,7 +17,6 @@ const stats = [
 export default function DashboardPage() {
   return (
     <div className="flex min-h-screen pt-16">
-      {/* Sidebar */}
       <aside className="hidden lg:flex w-64 flex-col border-r border-border bg-surface/50 p-4">
         <div className="mb-6 px-3 pt-2">
           <h2 className="text-xs font-semibold uppercase tracking-wider text-text-muted">Navigation</h2>
@@ -32,14 +31,12 @@ export default function DashboardPage() {
         </nav>
       </aside>
 
-      {/* Main Content */}
       <div className="flex-1 p-6 sm:p-8 lg:p-10">
         <div className="mb-8">
           <h1 className="text-2xl font-bold">Dashboard</h1>
           <p className="mt-1 text-sm text-text-secondary">Welcome to Aether. Your command center is being built.</p>
         </div>
 
-        {/* Stat Cards */}
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-8">
           {stats.map((s) => (
             <div key={s.label} className="card-elevated p-5">
@@ -49,9 +46,7 @@ export default function DashboardPage() {
           ))}
         </div>
 
-        {/* Main Grid */}
         <div className="grid gap-6 lg:grid-cols-3">
-          {/* Today's Plan */}
           <div className="lg:col-span-2 card-elevated p-6">
             <h3 className="text-sm font-semibold mb-4">Today&apos;s Plan</h3>
             <div className="flex flex-col items-center justify-center py-12 text-center">
@@ -68,7 +63,6 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          {/* Quick Actions */}
           <div className="card-elevated p-6">
             <h3 className="text-sm font-semibold mb-4">Quick Actions</h3>
             <div className="flex flex-col gap-2">
@@ -86,7 +80,6 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Activity */}
         <div className="mt-6 card-elevated p-6">
           <h3 className="text-sm font-semibold mb-4">Recent Activity</h3>
           <div className="flex flex-col items-center justify-center py-8 text-center">
