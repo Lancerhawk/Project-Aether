@@ -30,9 +30,19 @@ aether/
 │   ├── prisma/        # Database schema and migrations
 │   ├── package.json   # Backend dependencies (independent)
 │   └── ...
+├── docs/              # Architecture and design documentation
+│   ├── architecture.md
+│   ├── database.md
+│   ├── api.md
+│   ├── frontend.md
+│   ├── backend.md
+│   ├── folder-structure.md
+│   ├── coding-guidelines.md
+│   ├── design-system.md
+│   └── roadmap.md
 ├── README.md          # This file
 ├── CHANGELOG.md       # Release history
-└── .env.example       # Environment variable reference
+└── .gitignore
 ```
 
 ### Separation Philosophy
@@ -48,25 +58,41 @@ Frontend and backend are **completely independent** projects:
 
 | Layer     | Technology                          |
 |-----------|-------------------------------------|
-| Frontend  | Next.js, TypeScript, Tailwind CSS   |
+| Frontend  | Next.js 16, React 19, TypeScript, Tailwind CSS v4 |
 | Backend   | Node.js, Express, TypeScript        |
-| Database  | PostgreSQL via Prisma ORM           |
+| Database  | PostgreSQL via Prisma ORM (Supabase) |
 | Tooling   | ESLint, Prettier                    |
+
+## Documentation
+
+All architecture and design decisions are documented in the `docs/` folder:
+
+| Document | Description |
+|---|---|
+| [Architecture](docs/architecture.md) | System overview, layer responsibilities, request lifecycle |
+| [Database](docs/database.md) | Complete entity design with relationships and indexes |
+| [API](docs/api.md) | Full REST API specification for all modules |
+| [Frontend](docs/frontend.md) | Routing, components, hooks, services, state management |
+| [Backend](docs/backend.md) | Controllers, services, repositories, middleware, validation |
+| [Folder Structure](docs/folder-structure.md) | What goes where in both projects |
+| [Coding Guidelines](docs/coding-guidelines.md) | Naming, git conventions, formatting, architecture rules |
+| [Design System](docs/design-system.md) | Colors, typography, spacing, animations, accessibility |
+| [Roadmap](docs/roadmap.md) | Version plan from v0.1.0 to v1.0.0 |
 
 ## Getting Started
 
 ### Prerequisites
 - Node.js 18+
 - npm 9+
-- PostgreSQL (for backend)
+- PostgreSQL (or Supabase account)
 
 ### Backend
 ```bash
 cd backend
-cp .env.example .env    # Configure your database URL
+cp .env.example .env
 npm install
 npx prisma generate
-npm run dev             # Starts on http://localhost:5000
+npm run dev             # Starts on http://localhost:3001
 ```
 
 ### Frontend
@@ -85,7 +111,7 @@ Aether follows [Semantic Versioning](https://semver.org/):
 - **Minor** (`0.x.0`) — New features and capabilities
 - **Patch** (`0.0.x`) — Bug fixes and minor improvements
 
-Current version: **v0.1.0** (Foundation Release)
+Current version: **v0.2.0** (Architecture)
 
 ## License
 
