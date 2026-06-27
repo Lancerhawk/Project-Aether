@@ -1,14 +1,22 @@
 import { Request, Response } from 'express';
 import { sendSuccess } from '../utils';
+import prisma from '../config/prisma';
 import { HealthCheckData } from '../types';
 
-export function getHealth(_req: Request, res: Response) {
+export async function getHealth(_req: Request, res: Response) {
+  let dbStatus = 'connected';
+  try {
+    await prisma.$queryRaw`SELECT 1`;
+  } catch {
+    dbStatus = 'disconnected';
+  }
+
   const data: HealthCheckData = {
-    status: 'ok',
-    version: '0.1.0',
-    timestamp: new Date().toISOString(),
-    uptime: process.uptime(),
+    status: 'healthy',
+    version: '0.3.0',
+    uptime: Math.floor(process.uptime()),
+    database: dbStatus,
   };
 
-  sendSuccess(res, data, 'Aether API is running');
+  sendSuccess(res, data);
 }

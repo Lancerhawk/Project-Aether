@@ -54,6 +54,21 @@ Frontend and backend are **completely independent** projects:
 - No shared runtime dependencies
 - Each can be developed, tested, and deployed independently
 
+4. Configure backend environment:
+```bash
+cp .env.example .env
+# Edit .env with your database URL, JWT secrets, and GitHub OAuth credentials
+```
+
+5. Configure frontend environment:
+```bash
+cd ../frontend
+cp .env.example .env.local
+# Edit .env.local with your GitHub OAuth client ID
+```
+
+6. Start development servers (in separate terminals):
+
 ## Tech Stack
 
 | Layer     | Technology                          |
@@ -111,7 +126,22 @@ Aether follows [Semantic Versioning](https://semver.org/):
 - **Minor** (`0.x.0`) — New features and capabilities
 - **Patch** (`0.0.x`) — Bug fixes and minor improvements
 
-Current version: **v0.2.0** (Architecture)
+**Version:** 0.3.0 (Authentication & User Foundation)  
+**Status:** In Development
+
+## Environment Variables
+
+### Backend (`.env`)
+- `DATABASE_URL`: PostgreSQL connection string
+- `JWT_SECRET`: Secret key for access tokens (min 32 chars)
+- `JWT_REFRESH_SECRET`: Secret key for refresh tokens (min 32 chars)
+- `GITHUB_CLIENT_ID`: GitHub OAuth App Client ID
+- `GITHUB_CLIENT_SECRET`: GitHub OAuth App Client Secret
+- `FRONTEND_URL`: URL of the frontend application (e.g., http://localhost:3000)
+
+### Frontend (`.env.local`)
+- `NEXT_PUBLIC_API_URL`: Backend API URL (default: http://localhost:3001/api)
+- `NEXT_PUBLIC_GITHUB_CLIENT_ID`: GitHub OAuth App Client ID
 
 ## License
 

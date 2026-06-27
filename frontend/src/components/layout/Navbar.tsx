@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useAuth } from "@/context/AuthContext";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const { user, isAuthenticated } = useAuth();
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass-nav">
@@ -27,9 +29,24 @@ export function Navbar() {
           </div>
 
           <div className="hidden md:block">
-            <Link href="/dashboard" className="btn-primary rounded-lg px-4 py-2 text-sm font-medium text-white">
-              Get Started
-            </Link>
+            {isAuthenticated ? (
+              <Link href="/dashboard" className="flex items-center gap-2">
+                <div className="h-8 w-8 overflow-hidden rounded-full border border-border transition-transform hover:scale-105">
+                  {user?.avatarUrl ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={user.avatarUrl} alt={user.name} className="h-full w-full object-cover" />
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center bg-surface-light text-xs font-bold text-text-muted">
+                      {user?.name?.charAt(0) || "U"}
+                    </div>
+                  )}
+                </div>
+              </Link>
+            ) : (
+              <Link href="/login" className="btn-primary rounded-lg px-4 py-2 text-sm font-medium text-white">
+                Log in
+              </Link>
+            )}
           </div>
 
           <button onClick={() => setOpen(!open)} className="md:hidden rounded-lg p-2 text-text-secondary hover:bg-surface-hover" aria-label="Menu">
@@ -43,7 +60,9 @@ export function Navbar() {
           <div className="md:hidden border-t border-border pb-4 pt-3 flex flex-col gap-1">
             <Link href="/" onClick={() => setOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-text-secondary hover:bg-surface-hover">Home</Link>
             <Link href="/dashboard" onClick={() => setOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-text-secondary hover:bg-surface-hover">Dashboard</Link>
-            <Link href="/dashboard" onClick={() => setOpen(false)} className="btn-primary mt-3 rounded-lg px-4 py-2.5 text-center text-sm font-medium text-white">Get Started</Link>
+            <Link href={isAuthenticated ? "/dashboard" : "/login"} onClick={() => setOpen(false)} className="btn-primary mt-3 rounded-lg px-4 py-2.5 text-center text-sm font-medium text-white">
+              {isAuthenticated ? "Go to Dashboard" : "Log in"}
+            </Link>
           </div>
         )}
       </nav>

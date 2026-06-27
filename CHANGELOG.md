@@ -5,6 +5,18 @@ All notable changes to the Aether project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] - 2026-06-27
+
+### Added
+- **Authentication System:** Complete JWT-based authentication with robust refresh token rotation.
+- **GitHub OAuth:** Users can now log in securely via GitHub.
+- **User Models:** `User` and `UserSettings` Prisma schemas with PostgreSQL UUIDs and enums.
+- **Protected Routes:** `AuthGuard` on frontend and `authenticate` middleware on backend.
+- **Settings UI:** New settings page allowing users to customize themes, timezones, and Pomodoro timers.
+- **Auto Session Restoration:** Frontend silently restores session on mount via refresh tokens.
+- **API Utilities:** Robust error handling (`AppError`), pagination wrappers, and Zod validation middleware.
+- **Toast Notifications:** Built-in React context for success/error alerts across the app.
+
 ## [0.2.0] - 2026-06-26
 
 ### Added
