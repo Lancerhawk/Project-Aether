@@ -24,6 +24,26 @@ enum WeekStart {
   MONDAY
 }
 
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum EnergyLevel {
+  LOW
+  MEDIUM
+  HIGH
+}
+
 model User {
   id           String       @id @default(uuid()) @db.Uuid
   email        String       @unique
@@ -37,6 +57,8 @@ model User {
   updatedAt    DateTime     @updatedAt
 
   settings UserSettings?
+  tasks    Task[]
+  tags     Tag[]
 
   @@unique([provider, providerId])
   @@map("users")
@@ -63,4 +85,76 @@ model UserSettings {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("user_settings")
+}
+
+model Task {
+  id               String       @id @default(uuid()) @db.Uuid
+  userId           String       @db.Uuid
+  projectId        String?      @db.Uuid
+  goalId           String?      @db.Uuid
+  title            String
+  description      String?
+  status           TaskStatus   @default(TODO)
+  priority         Priority     @default(MEDIUM)
+  energyLevel      EnergyLevel?
+  estimatedMinutes Int?
+  actualMinutes    Int?
+  dueDate          DateTime?
+  completedAt      DateTime?
+  sortOrder        Int          @default(0)
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+  deletedAt        DateTime?
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subtasks SubTask[]
+  taskTags TaskTag[]
+
+  @@index([userId, status])
+  @@index([userId, dueDate])
+  @@index([userId, priority, status])
+  @@map("tasks")
+}
+
+model SubTask {
+  id          String    @id @default(uuid()) @db.Uuid
+  taskId      String    @db.Uuid
+  title       String
+  isCompleted Boolean   @default(false)
+  sortOrder   Int       @default(0)
+  completedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  task Task @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  @@index([taskId, sortOrder])
+  @@map("subtasks")
+}
+
+model Tag {
+  id        String    @id @default(uuid()) @db.Uuid
+  userId    String    @db.Uuid
+  name      String
+  color     String
+  createdAt DateTime  @default(now())
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  taskTags TaskTag[]
+
+  @@unique([userId, name])
+  @@map("tags")
+}
+
+model TaskTag {
+  id        String   @id @default(uuid()) @db.Uuid
+  taskId    String   @db.Uuid
+  tagId     String   @db.Uuid
+  createdAt DateTime @default(now())
+
+  task Task @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  tag  Tag  @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@unique([taskId, tagId])
+  @@map("task_tags")
 }

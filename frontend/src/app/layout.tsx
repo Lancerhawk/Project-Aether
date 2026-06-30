@@ -4,6 +4,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { AuthProvider } from "@/context/AuthContext";
 import { ToastProvider } from "@/components/feedback/Toast";
+import { QueryProvider } from "@/providers/QueryProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -17,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Aether — Smart Planning & Execution",
+  title: "Aether",
   description:
     "Aether is a smart daily planning and execution platform for students, developers, and project workers.",
 };
@@ -33,11 +34,13 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <ToastProvider>
-          <AuthProvider>
-            <main className="flex-1">{children}</main>
-          </AuthProvider>
-        </ToastProvider>
+        <QueryProvider>
+          <ToastProvider>
+            <AuthProvider>
+              <main className="flex-1">{children}</main>
+            </AuthProvider>
+          </ToastProvider>
+        </QueryProvider>
       </body>
     </html>
   );

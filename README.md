@@ -126,7 +126,7 @@ Aether follows [Semantic Versioning](https://semver.org/):
 - **Minor** (`0.x.0`) — New features and capabilities
 - **Patch** (`0.0.x`) — Bug fixes and minor improvements
 
-**Version:** 0.3.0 (Authentication & User Foundation)  
+**Version:** 0.4.0 (Task Management Engine)  
 **Status:** In Development
 
 ## Environment Variables

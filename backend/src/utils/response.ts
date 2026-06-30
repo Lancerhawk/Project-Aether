@@ -28,8 +28,10 @@ interface PaginationMeta {
 
 interface PaginatedResponse<T> {
   success: true;
-  data: T[];
-  pagination: PaginationMeta;
+  data: {
+    data: T[];
+    pagination: PaginationMeta;
+  };
 }
 
 export function sendSuccess<T>(res: Response, data: T, statusCode: number = 200) {
@@ -48,8 +50,10 @@ export function sendPaginated<T>(
 ) {
   const response: PaginatedResponse<T> = {
     success: true,
-    data,
-    pagination,
+    data: {
+      data,
+      pagination,
+    },
   };
   return res.status(statusCode).json(response);
 }

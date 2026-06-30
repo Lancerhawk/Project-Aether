@@ -13,7 +13,7 @@ export async function getHealth(_req: Request, res: Response) {
 
   const data: HealthCheckData = {
     status: 'healthy',
-    version: '0.3.0',
+    version: '0.4.0',
     uptime: Math.floor(process.uptime()),
     database: dbStatus,
   };

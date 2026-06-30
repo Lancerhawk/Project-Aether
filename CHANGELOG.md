@@ -5,6 +5,18 @@ All notable changes to the Aether project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] - 2026-06-30
+
+### Added
+- **Core Task Management Engine:** Complete system for managing tasks, subtasks, and tags.
+- **Database Schema:** `Task`, `SubTask`, `Tag`, and `TaskTag` models with priority, energy levels, and status tracking.
+- **Advanced Filtering & Sorting:** Backend and frontend support for complex querying (status, priority, tags, dates).
+- **Soft Delete & Trash:** Tasks are soft-deleted and moved to a dedicated Trash page for restoration or permanent deletion.
+- **Bulk Operations:** Multi-select tasks to complete, archive, or delete them in bulk.
+- **UI Components:** New `TaskCard`, `TaskTable`, `TaskDrawer`, and `TagSelector` components with premium styling and interactions.
+- **TanStack Query:** Integrated React Query for robust data fetching, caching, and optimistic UI updates.
+
+
 ## [0.3.0] - 2026-06-27
 
 ### Added
